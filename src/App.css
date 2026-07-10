@@ -1,0 +1,851 @@
+/* ==========================================
+   THEME DESIGN SYSTEM (CSS VARIABLES)
+   ========================================== */
+:root {
+  /* Common Core Infrastructure */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --accent-primary: #6366f1; /* Premium, higher-contrast indigo */
+  --accent-hover: #4f46e5;
+  --accent-success: #10b981;
+  --max-width-content: 900px;
+  --max-width-grid: 1100px;
+  
+  /* HIGH CONTRAST DARK MODE (Default System) */
+  --bg-app: #090d16;             /* Deeper onyx base for better text separation */
+  --bg-nav: rgba(9, 13, 22, 0.9);
+  --text-main: #f8fafc;          /* Pure slate white for maximum reading crispness */
+  --text-muted: #cbd5e1;         /* Brighter muted state (AAA Accessibility target) */
+  --card-bg: #151f32;            /* Highly distinct surface color against the onyx background */
+  --card-border: #475569;        /* Defined, razor-sharp card outlines */
+  --card-shadow: rgba(0, 0, 0, 0.6);
+  --divider-color: #334155;
+  --nav-btn-hover: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Seamless Adaptive System Light Properties */
+    --bg-app: #f8fafc;
+    --bg-nav: rgba(248, 250, 252, 0.9);
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --card-shadow: rgba(148, 163, 184, 0.12);
+    --divider-color: #e2e8f0;
+    --nav-btn-hover: rgba(15, 23, 42, 0.05);
+  }
+}
+
+/* ==========================================
+   GLOBAL LAYOUT RESETS & OVERLAP FIXES
+   ========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content-view {
+  flex-grow: 1;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
+.view-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.text-layout-max {
+  max-width: var(--max-width-content);
+}
+
+/* Global Typography Elements */
+h1, h2, h3, h4 {
+  color: var(--text-main);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 0;
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+}
+
+strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.view-titlecenter {
+  text-align: center;
+  font-size: 2.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.view-subtitlecenter {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.section-block-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.dark-divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--divider-color);
+  margin: 3.5rem 0;
+}
+
+/* Spacer Utilities */
+.space-below-large { margin-bottom: 4rem; }
+.space-below-small { margin-bottom: 1.5rem; }
+.text-center { text-align: center; }
+
+/* ==========================================
+   PREMIUM STICKY NAVIGATION BAR
+   ========================================== */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: var(--bg-nav);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  z-index: 1000;
+}
+
+.logo-brand {
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links button:hover {
+  background-color: var(--nav-btn-hover);
+  color: var(--text-main);
+}
+
+.nav-links button.active {
+  background-color: var(--accent-primary);
+  color: #ffffff !important;
+}
+
+/* ==========================================
+   HOME VIEW STYLING LAYOUTS
+   ========================================== */
+.home-hero-intro {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.logo-brand-display {
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.home-description-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 25px var(--card-shadow);
+  border-radius: 16px;
+  padding: 2.25rem;
+  margin-bottom: 3rem;
+}
+
+.home-description-card p:last-of-type {
+  margin-bottom: 0;
+}
+
+.vision-highlight {
+  border-left: 3px solid var(--accent-success);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--text-main) !important;
+}
+
+/* Unified Video Container Framework */
+.video-section-wrapper {
+  margin-bottom: 3rem;
+}
+
+.video-embed-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--card-shadow);
+  border: 1px solid var(--card-border);
+}
+
+.video-embed-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   ABOUT VIEW COMPONENT MAPPING
+   ========================================== */
+.about-profile-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.about-photo-wrapper {
+  width: 100%;
+}
+
+.about-portrait-image {
+  width: 100%;
+  height: 420px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center top;
+  box-shadow: 0 10px 25px var(--card-shadow);
+  border: 1px solid var(--card-border);
+}
+
+.about-details-box p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-footer-highlight {
+  font-weight: 600;
+  color: var(--accent-primary) !important;
+  margin-top: 1.5rem;
+}
+
+/* ==========================================
+   MUSIC & HORIZONTAL LAYOUT GRID
+   ========================================== */
+.media-grid-system {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.modular-content-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 300px;
+  height: max-content;
+}
+
+.album-art-wrapper {
+  width: 100%;
+  padding-bottom: 100%; 
+  position: relative;
+}
+
+.music-art-tile-static {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* Mid Platform Row Links */
+.mid-links-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid var(--card-border);
+}
+
+@media (prefers-color-scheme: light) {
+  .mid-links-bar {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+.mini-icon-btn {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.mini-icon-btn:hover {
+  transform: scale(1.15);
+}
+
+.mini-icon-btn.spot:hover { color: #1ed760; }
+.mini-icon-btn.a-mus:hover { color: #fc3c44; }
+.mini-icon-btn.amz:hover { color: #ff9900; }
+.mini-icon-btn.tide:hover { color: #00bfb3; }
+
+.music-details {
+  padding: 1.25rem;
+  flex-grow: 1;
+}
+
+.music-details h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.music-details p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+/* Editorial Content Styles */
+.editorial-text-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.editorial-rich-typography p {
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================
+   PUBLISHING INTERFACES & CLEAN SPACING
+   ========================================== */
+.book-cover-wrapper {
+  background-color: #000000;
+}
+
+.book-cover-wrapper .music-art-tile-static {
+  background-position: center top !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.detached-details {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.detached-details p {
+  margin-bottom: 0 !important;
+}
+
+.publishing-bar {
+  padding: 0.75rem 1rem;
+}
+
+.action-btn {
+  background-color: var(--accent-primary);
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.action-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.wide-action-btn {
+  width: 100%;
+}
+
+.bar-label-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.publishing-accent-title {
+  color: var(--accent-success) !important;
+}
+
+/* Spotlight Context Text Frame Wrapper */
+.video-context-box {
+  background-color: var(--card-bg);
+  border-left: 4px solid var(--accent-primary);
+  padding: 1rem 1.25rem;
+  border-radius: 0 12px 12px 0;
+  border-top: 1px solid var(--card-border);
+  border-right: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.video-context-box p {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+/* ==========================================
+   EDITORIAL ENDORSEMENT QUOTES
+   ========================================== */
+.reviews-layout-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-quote-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 3.5rem 2rem 2rem 2rem;
+  position: relative;
+}
+
+.quote-mark {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  color: var(--accent-primary);
+  opacity: 0.25;
+  line-height: 1;
+}
+
+.quote-text {
+  font-style: italic;
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 2;
+  color: var(--text-main);
+}
+
+.quote-attribution {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewer-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.reviewer-title {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================
+   MEDIA VIEW (INTERACTIVE NEWS CARDS)
+   ========================================== */
+.appearance-interactive-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
+}
+
+.appearance-interactive-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-primary);
+}
+
+.card-accent-strip {
+  height: 4px;
+  width: 100%;
+}
+
+.source-sheen .card-accent-strip { background: linear-gradient(90deg, var(--accent-primary), var(--accent-success)); }
+.source-podcast .card-accent-strip { background: #ffaa00; }
+.source-scoop .card-accent-strip { background: #fc3c50; }
+.source-royal .card-accent-strip { background: #00a8e1; }
+
+.appearance-card-content {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.source-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--accent-success);
+  margin-bottom: 0.6rem;
+}
+
+.appearance-interactive-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+  color: var(--text-main);
+}
+
+.appearance-interactive-card p {
+  font-size: 0.95rem;
+  flex-grow: 1; 
+  margin-bottom: 1.5rem;
+}
+
+.read-more-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  display: inline-flex;
+  align-items: center;
+}
+
+.read-more-link .arrow {
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.appearance-interactive-card:hover .read-more-link .arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   BENTO SYSTEM (PREMIUM COMPONENT CORES)
+   ========================================== */
+.email-cta-card {
+  background-color: var(--card-bg);
+  border: 2px solid var(--accent-primary);
+  border-radius: 16px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  margin-bottom: 3.5rem;
+  box-shadow: 0 8px 24px var(--card-shadow);
+}
+
+.email-cta-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main) !important; 
+}
+
+.contact-email {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-main) !important; 
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  border-bottom: 2px dashed var(--accent-primary);
+  transition: color 0.2s ease;
+}
+
+.contact-email:hover {
+  color: var(--accent-primary) !important;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(210px, auto);
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.bento-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  padding: 1.75rem; /* Enhanced padding for better text layouts */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  box-shadow: 0 4px 15px var(--card-shadow);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+  background-color: var(--card-bg);
+}
+
+.bento-card:hover {
+  transform: scale(1.015);
+  border-color: var(--accent-primary);
+}
+
+/* Dynamic Art Layer Architecture */
+.bento-art-tile-static {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Linear-gradient overlay system: Serves a high-contrast dark drop behind text fields 
+   in BOTH system theme engines without desaturating or muddying overall color assets */
+.bento-art-tile-static::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 65%; /* Smoothly curtains the lower text portion */
+  background: linear-gradient(to top, rgba(9, 13, 22, 0.85) 0%, rgba(9, 13, 22, 0.4) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Light theme contrast adjustment for image overlays */
+@media (prefers-color-scheme: light) {
+  .bento-art-tile-static::after {
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.45) 60%, transparent 100%);
+  }
+}
+
+.bento-card-header,
+.bento-card-body,
+.bento-arrow {
+  position: relative;
+  z-index: 2; /* Elevates elements cleanly above image layers */
+}
+
+.bento-hero { grid-column: span 2; grid-row: span 2; }
+.bento-linkedin { grid-column: span 1; }
+.bento-instagram { grid-column: span 1; }
+.bento-wide { grid-column: span 2; }
+.bento-standard { grid-column: span 1; }
+
+.bento-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Update or add this to your App.css */
+.bento-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Force a high-contrast white stroke/fill */
+  color: #ffffff; 
+}
+
+.bento-icon svg {
+  width: 24px;
+  height: 24px;
+  
+  /* The Secret Sauce: 
+     A hard black drop-shadow ensures the white icon 
+     is readable on ANY photo or background color.
+  */
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.8));
+  
+  /* Ensure the stroke is visible */
+  stroke: currentColor;
+  stroke-width: 2px;
+  fill: none;
+}
+
+/* Pill badge styling for labels */
+.bento-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bento-card-body {
+  margin-top: auto; /* Aligns textual blocks nicely along bento floors */
+}
+
+.bento-card-body h3, 
+.bento-card-body p {
+  /* Ensure the text is white */
+  color: #ffffff;
+  
+  /* The "Halo" effect */
+  /* This creates a soft, dark shadow around the letters */
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
+  
+  /* Prevents the text from looking pixelated with the shadow */
+  margin: 0;
+}
+
+.bento-card-body h3 {
+  font-weight: 700;
+  /* Slightly larger shadow for headings to keep them bold */
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.bento-arrow {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  /* Apply the same shadow logic here */
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.bento-card:hover .bento-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ==========================================
+   FOOTER UNIVERSAL LAYOUT
+   ========================================== */
+.app-footer {
+  border-top: 1px solid var(--card-border);
+  padding: 2.5rem 1rem;
+  text-align: center;
+  background-color: var(--card-bg);
+}
+
+.footer-quote {
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   RESPONSIVE MEDIA BREAKPOINT SYSTEMS
+   ========================================== */
+@media (max-width: 960px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-hero, .bento-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    position: relative;
+    padding: 1rem;
+    height: auto;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .main-content-view {
+    padding-top: 1.5rem;
+  }
+  .nav-links {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-links button {
+    white-space: nowrap;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  .about-profile-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .about-portrait-image {
+    height: 340px;
+  }
+}
+
+@media (max-width: 580px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-hero, .bento-linkedin, .bento-instagram, .bento-wide, .bento-standard {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .logo-brand-display {
+    font-size: 2rem;
+  }
+}
+

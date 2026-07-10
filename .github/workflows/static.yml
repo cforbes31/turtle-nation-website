@@ -31,13 +31,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+        env:
+          # This helps Vite know where to put the files
+          BASE_URL: /${{ github.event.repository.name }}/
+      - name: Deploy to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
+          path: './dist' # This is where Vite puts your built files
+      - name: Deploy
         uses: actions/deploy-pages@v5
